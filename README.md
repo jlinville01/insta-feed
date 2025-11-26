@@ -12,8 +12,8 @@
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/jlinville01/retro-game-store.git
-   cd retro-game-store
+   git clone https://github.com/jlinville01/insta-feed.git
+   cd insta-feed
    ```
 
 2. **Install dependencies**
