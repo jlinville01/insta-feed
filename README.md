@@ -1,4 +1,4 @@
-# Retro Game E-Commerce Store
+# Fake Instagram Feed
 
 ![Project logo](https://github.com/jlinville01/insta-feed/blob/main/assets/logo.png?raw=true)
 
