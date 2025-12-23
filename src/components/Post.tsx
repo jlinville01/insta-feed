@@ -35,7 +35,7 @@ const Post = ({ post }: PostProps) => {
 
   return (
     <>
-      <article className="border-b border-border bg-background">
+      <article className="border-b border-border bg-background" data-testid="post">
         {/* Post Header */}
         <div className="flex items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
@@ -44,7 +44,7 @@ const Post = ({ post }: PostProps) => {
               alt={post.username}
               className="w-8 h-8 rounded-full"
             />
-            <span className="text-sm font-semibold">{post.username}</span>
+            <span className="text-sm font-semibold" data-testid="post-username">{post.username}</span>
           </div>
           <button className="hover:opacity-60 transition-opacity">
             <MoreHorizontal className="w-6 h-6" />
@@ -57,6 +57,7 @@ const Post = ({ post }: PostProps) => {
             src={post.image}
             alt="Post"
             className="w-full aspect-square object-cover"
+            data-testid="post-image"
           />
           {showHeartAnimation && (
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -75,6 +76,7 @@ const Post = ({ post }: PostProps) => {
               <button
                 onClick={handleLike}
                 className="hover:opacity-60 transition-all"
+                data-testid="like-button"
               >
                 <Heart
                   className={cn(
@@ -110,7 +112,7 @@ const Post = ({ post }: PostProps) => {
 
           {/* Likes Count */}
           <div className="mt-2">
-            <span className="text-sm font-semibold">
+            <span className="text-sm font-semibold" data-testid="like-count">
               {likes.toLocaleString()} likes
             </span>
           </div>

@@ -70,7 +70,7 @@ const CommentModal = ({ open, onClose, post }: CommentModalProps) => {
 
               {/* Other Comments */}
               {post.comments.map((comment) => (
-                <div key={comment.id} className="mb-4">
+                <div key={comment.id} className="mb-4" data-testid="comment">
                   <div className="flex gap-3">
                     <img
                       src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${comment.username}`}
@@ -123,9 +123,13 @@ const CommentModal = ({ open, onClose, post }: CommentModalProps) => {
                     value={newComment}
                     onChange={(e) => setNewComment(e.target.value)}
                     className="flex-1 bg-transparent outline-none text-sm"
+                    data-testid="comment-input"
                   />
                   {newComment && (
-                    <button className="text-link font-semibold text-sm hover:opacity-60 transition-opacity">
+                    <button 
+                      className="text-link font-semibold text-sm hover:opacity-60 transition-opacity"
+                      data-testid="comment-submit"
+                    >
                       Post
                     </button>
                   )}
