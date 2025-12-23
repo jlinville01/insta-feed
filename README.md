@@ -34,7 +34,7 @@
 
 5. **Run automation**
    ```bash
-   npx wdio run ./wdio.conf.js
+   npx playwright test
    ```
 
 ## This project is built with:
