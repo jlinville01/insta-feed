@@ -94,7 +94,7 @@ const CommentModal = ({ open, onClose, post }: CommentModalProps) => {
 
               {/* Other Comments */}
               {comments.map((comment) => (
-                <div key={comment.id} className="mb-4" data-testid="comment">
+                <div key={comment.id} className="mb-4" data-testid="post-comment">
                   <div className="flex gap-3">
                     <img
                       src={getAvatarUrl(comment.username)}
