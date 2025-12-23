@@ -52,17 +52,22 @@ test.describe('Fake Instagram Feed', () => {
 
   test('user can add a comment to a post', async ({ page }) => {
     const firstPost = page.getByTestId('post').first();
+    const commentButton = firstPost.getByTestId('comment-button');
     const commentInput = firstPost.getByTestId('comment-input');
     const commentSubmit = firstPost.getByTestId('comment-submit');
 
-    await commentSubmit.click();
+    // Leave comment
+    await commentButton.click();
     const uniqueComment = 'Nice shot';
-
-    await commentInput.fill(uniqueComment);
-    await commentSubmit.click();
+    await page.waitForTimeout(3000);
+    // await page.getByTestId('comment-input').click();
+    await page.getByTestId('comment-input').fill(uniqueComment);
+    await page.getByTestId('comment-submit').click();
 
     // Expect comment to appear under the same post
     const comments = firstPost.getByTestId('comment');
-    await expect(comments.filter({ hasText: uniqueComment })).toBeVisible();
+    await expect(
+        page.locator('div[data-testid="post-comment"]').locator('span', { hasText: uniqueComment })
+    ).toBeVisible();
   });
 });
