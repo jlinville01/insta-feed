@@ -9,7 +9,7 @@ const Index = () => {
     <div className="min-h-screen bg-background pb-12 md:pb-0">
       <Header />
       <StoriesBar />
-      <main className="max-w-[470px] mx-auto">
+      <main className="max-w-[470px] mx-auto" data-testid="feed">
         {posts.map((post) => (
           <Post key={post.id} post={post} />
         ))}
