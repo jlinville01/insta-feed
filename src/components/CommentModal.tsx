@@ -16,7 +16,7 @@ const getAvatarUrl = (username: string) => {
   if (username === "justinlinville") {
     return JUSTIN_AVATAR;
   }
-  return `https://api.dicebear.com/7.x/avataaars/svg?seed=${username}`;
+  return `https://api.dicebear.com/9.x/avataaars/svg?seed=${username}&mouth=smile`;
 };
 
 const CommentModal = ({ open, onClose, post }: CommentModalProps) => {
