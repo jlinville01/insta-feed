@@ -32,18 +32,10 @@
    cd qa
    ```
 
-5. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-6. **Run automation**
+5. **Run automation**
    ```bash
    npx wdio run ./wdio.conf.js
    ```
-   
-### Testing Checkout
-Use credit card number: `4242 4242 4242 4242` to complete a test purchase.
 
 ## This project is built with:
 
