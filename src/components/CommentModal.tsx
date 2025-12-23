@@ -13,6 +13,21 @@ interface CommentModalProps {
 const CommentModal = ({ open, onClose, post }: CommentModalProps) => {
   const [commentLikes, setCommentLikes] = useState<Record<string, boolean>>({});
   const [newComment, setNewComment] = useState("");
+  const [comments, setComments] = useState(post.comments);
+
+  const handleSubmitComment = () => {
+    if (!newComment.trim()) return;
+    
+    const comment = {
+      id: `comment-${Date.now()}`,
+      username: "justinlinville",
+      text: newComment.trim(),
+      likes: 0,
+    };
+    
+    setComments((prev) => [...prev, comment]);
+    setNewComment("");
+  };
 
   const toggleCommentLike = (commentId: string) => {
     setCommentLikes((prev) => ({
@@ -69,7 +84,7 @@ const CommentModal = ({ open, onClose, post }: CommentModalProps) => {
               </div>
 
               {/* Other Comments */}
-              {post.comments.map((comment) => (
+              {comments.map((comment) => (
                 <div key={comment.id} className="mb-4" data-testid="comment">
                   <div className="flex gap-3">
                     <img
@@ -129,6 +144,7 @@ const CommentModal = ({ open, onClose, post }: CommentModalProps) => {
                     <button 
                       className="text-link font-semibold text-sm hover:opacity-60 transition-opacity"
                       data-testid="comment-submit"
+                      onClick={handleSubmitComment}
                     >
                       Post
                     </button>
