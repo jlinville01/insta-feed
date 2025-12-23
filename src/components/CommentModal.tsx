@@ -10,7 +10,7 @@ interface CommentModalProps {
   post: Post;
 }
 
-const JUSTIN_AVATAR = "https://api.dicebear.com/7.x/avataaars/svg?seed=justinlinville&top=shortHairShortFlat&topColor=black&hairColor=black&facialHair=beardMedium&facialHairColor=black&skin=light&accessories=blank";
+const JUSTIN_AVATAR = "https://api.dicebear.com/9.x/avataaars-neutral/svg?seed=baldbeard&backgroundColor=b6e3f4";
 
 const getAvatarUrl = (username: string) => {
   if (username === "justinlinville") {
