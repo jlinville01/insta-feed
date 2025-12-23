@@ -55,6 +55,7 @@ test.describe('Fake Instagram Feed', () => {
     const commentInput = firstPost.getByTestId('comment-input');
     const commentSubmit = firstPost.getByTestId('comment-submit');
 
+    await commentSubmit.click();
     const uniqueComment = 'Nice shot';
 
     await commentInput.fill(uniqueComment);
