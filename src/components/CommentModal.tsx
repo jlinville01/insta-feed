@@ -10,6 +10,15 @@ interface CommentModalProps {
   post: Post;
 }
 
+const JUSTIN_AVATAR = "https://api.dicebear.com/7.x/avataaars/svg?seed=justinlinville&top=shortHairShortFlat&topColor=black&hairColor=black&facialHair=beardMedium&facialHairColor=black&skin=light&accessories=blank";
+
+const getAvatarUrl = (username: string) => {
+  if (username === "justinlinville") {
+    return JUSTIN_AVATAR;
+  }
+  return `https://api.dicebear.com/7.x/avataaars/svg?seed=${username}`;
+};
+
 const CommentModal = ({ open, onClose, post }: CommentModalProps) => {
   const [commentLikes, setCommentLikes] = useState<Record<string, boolean>>({});
   const [newComment, setNewComment] = useState("");
@@ -88,7 +97,7 @@ const CommentModal = ({ open, onClose, post }: CommentModalProps) => {
                 <div key={comment.id} className="mb-4" data-testid="comment">
                   <div className="flex gap-3">
                     <img
-                      src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${comment.username}`}
+                      src={getAvatarUrl(comment.username)}
                       alt={comment.username}
                       className="w-8 h-8 rounded-full flex-shrink-0"
                     />
