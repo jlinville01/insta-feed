@@ -90,6 +90,7 @@ const Post = ({ post }: PostProps) => {
               <button
                 onClick={() => setShowComments(true)}
                 className="hover:opacity-60 transition-opacity"
+                data-testid="comment-button"
               >
                 <MessageCircle className="w-7 h-7" />
               </button>
