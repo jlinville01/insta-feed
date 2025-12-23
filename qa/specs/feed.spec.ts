@@ -2,7 +2,6 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Fake Instagram Feed', () => {
   test.beforeEach(async ({ page }) => {
-    console.log('BASE_URL is:', process.env.BASE_URL);
     await page.goto('/');
   });
 
@@ -14,12 +13,12 @@ test.describe('Fake Instagram Feed', () => {
     const firstPost = page.getByTestId('post').first();
     await expect(firstPost).toBeVisible();
 
-    // Verify post has username + image
+    // Verify post has username, image
     await expect(firstPost.getByTestId('post-username')).toBeVisible();
     await expect(firstPost.getByTestId('post-image')).toBeVisible();
   });
 
-  test('each post has actions (like + comment)', async ({ page }) => {
+  test('each post has like + comment button', async ({ page }) => {
     const posts = page.getByTestId('post');
     const count = await posts.count();
     expect(count).toBeGreaterThan(0);
@@ -27,11 +26,42 @@ test.describe('Fake Instagram Feed', () => {
     for (let i = 0; i < count; i++) {
       const post = posts.nth(i);
 
-      // Very like button, like count, comment input and submit button
+      // Verify like button and count
       await expect(post.getByTestId('like-button')).toBeVisible();
       await expect(post.getByTestId('like-count')).toBeVisible();
-      await expect(post.getByTestId('comment-input')).toBeVisible();
-      await expect(post.getByTestId('comment-submit')).toBeVisible();
     }
+  });
+
+  test('liking a post increments its like count', async ({ page }) => {
+    const firstPost = page.getByTestId('post').first();
+
+    const likeCountLocator = firstPost.getByTestId('like-count');
+    const likeButton = firstPost.getByTestId('like-button');
+
+    const initialText = await likeCountLocator.textContent();
+    const initial = Number(initialText?.trim() || 0);
+
+    await likeButton.click();
+
+    // Verify like count should increase by 1
+    const afterText = await likeCountLocator.textContent();
+    const after = Number(afterText?.trim() || 0);
+
+    expect(after).toBe(initial + 1);
+  });
+
+  test('user can add a comment to a post', async ({ page }) => {
+    const firstPost = page.getByTestId('post').first();
+    const commentInput = firstPost.getByTestId('comment-input');
+    const commentSubmit = firstPost.getByTestId('comment-submit');
+
+    const uniqueComment = 'Nice shot';
+
+    await commentInput.fill(uniqueComment);
+    await commentSubmit.click();
+
+    // Expect comment to appear under the same post
+    const comments = firstPost.getByTestId('comment');
+    await expect(comments.filter({ hasText: uniqueComment })).toBeVisible();
   });
 });
